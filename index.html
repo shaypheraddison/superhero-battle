@@ -12,39 +12,76 @@
     
     <div id="player-selection">
         <div class="display-container" id="p1">
-            <h2 id="p1-header">Player 1</h2>
+            <div class="radio-container">
+                <input type="radio" id="p1-radio" name="player" value="Player 1">
+                <label for="p1-radio">Player 1</label>
+            </div>
             <div class="player-img" id="display-p1">
                 <img src="" alt="test1" id="player-1-img">
             </div>
         </div>
 
         <div class="display-container" id="fight-btn">
-            <a href="#">FIGHT!</a>
-            <h3>VS</h3>
+            <a href="" id="button">FIGHT!</a>
+            <h2 id="vs">VS</h3>
         </div>
 
         <div class="display-container" id="p2">
-            <h2 id="p2-header">Player 2</h2>
+            <div class="radio-container">
+                <input type="radio" id="p2-radio" name="player" value="Player 2">
+                <label for="p2-radio">Player 2</label>
+            </div>
             <div class="player-img" id="display-p2">
                 <img src="" alt="test2" id="player-2-img">
             </div>
         </div>
     </div>
 
-    <div id="characters">
-        <div class="stats" id="p1-stats">
-            
+    <div id="character-container">
+        <div class="stats">
+            <h3 class="char-stats">Character Stats</h3>
+            <ul class="powerstats" id="p1-powerstats">
+                <li>Intelligence</li>
+                <li>Strength</li>
+                <li>Speed</li>
+                <li>Durability</li>
+                <li>Power</li>
+                <li>Combat</li>
+            </ul>
         </div>
 
-
-
-
-
+        <div id="choices">
+            <img src="resources/thumbnails/moon-knight.png" class="playable-character" id="c1">
+            <img src="resources/thumbnails/captain-america.png"  class="playable-character" id="c2"></img>
+            <img src="resources/thumbnails/bane.png" class="playable-character" id="c3"></img>
+            <img src="resources/thumbnails/dr-doom.png"class="playable-character" id="c4"></img>
+            <img src="resources/thumbnails/kylo-ren.png" type="img" class="playable-character" id="c5"></img>
+            <img src="resources/thumbnails/donatello.png" type="img" class="playable-character" id="c6"></img>
+            <img src="resources/thumbnails/loki.png" type="img" class="playable-character" id="c7"></img>
+            <img src="resources/thumbnails/master-chief.png" type="img" class="playable-character" id="c8"></img>
+            <img src="resources/thumbnails/spider-gwen.png" type="img" class="playable-character" id="c9"></img>
+            <img src="resources/thumbnails/sauron.png" type="img" class="playable-character" id="c10"></img>
+            <img src="resources/thumbnails/red-hood.png" type="img" class="playable-character" id="c11"></img>
+            <img src="resources/thumbnails/ultron.png" type="img" class="playable-character" id="c12"></img>
+            <img src="resources/thumbnails/scarlet-spider.png" type="img" class="playable-character" id="c13"></img>
+            <img src="resources/thumbnails/harley-quinn.png" type="img" class="playable-character" id="c14"></img>
+            <img src="resources/thumbnails/vegeta.png" type="img" class="playable-character" id="c15"></img>
+            <img src="resources/thumbnails/storm.png"  type="img" class="playable-character" id="c16"></img>
+            <img src="resources/thumbnails/enchantress.png" type="img" class="playable-character" id="c17"></img>
+            <img src="resources/thumbnails/all-might.png" type="img" class="playable-character" id="c18"></img>
+        </div>
+        
+        <div class="stats">
+            <h3 class="char-stats">Character Stats</h3>
+            <ul class="powerstats" id="p2-powerstats">
+                <li>Intelligence</li>
+                <li>Strength</li>
+                <li>Speed</li>
+                <li>Durability</li>
+                <li>Power</li>
+                <li>Combat</li>
+            </ul>
+        </div>
     </div>
-
-
-
-
-
 </body>
 </html>
