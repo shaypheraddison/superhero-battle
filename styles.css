@@ -94,8 +94,9 @@ body {
     flex-wrap: wrap;
     align-content: space-around;
     justify-content: center;
-    width: 100%;
+    width: 85%;
     margin-top: 20px;
+    margin-left: 85px;
     grid-column: 2 / 5;
 }
 
