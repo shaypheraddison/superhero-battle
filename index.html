@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <script defer src="index.js"></script>
     <title>Fight!</title>
 </head>
@@ -13,11 +14,11 @@
     <div id="player-selection">
         <div class="display-container" id="p1">
             <div class="radio-container">
-                <input type="radio" id="p1-radio" name="player" value="Player 1">
+                <input type="radio" class="radio-btn" name="player" value="Player 1">
                 <label for="p1-radio">Player 1</label>
             </div>
-            <div class="player-img" id="display-p1">
-                <img src="" alt="test1" id="player-1-img">
+            <div class="player-img-container" id="display-p1">
+                <img src="resources/profile-images/red-hood-prof.png" alt="test1" class="player-img" id="player-1-img">
             </div>
         </div>
 
@@ -28,11 +29,11 @@
 
         <div class="display-container" id="p2">
             <div class="radio-container">
-                <input type="radio" id="p2-radio" name="player" value="Player 2">
+                <input type="radio" class="radio-btn" name="player" value="Player 2">
                 <label for="p2-radio">Player 2</label>
             </div>
-            <div class="player-img" id="display-p2">
-                <img src="resources/profile-images/dr-doom-prof.png" alt="test2" id="player-2-img">
+            <div class="player-img-container" id="display-p2">
+                <img src="resources/profile-images/sauron-prof.png" class="player-img" alt="test2" id="player-2-img">
             </div>
         </div>
     </div>

@@ -1,7 +1,8 @@
 /* main css styling */
 body {
-    background-color: rgb(207, 207, 207);
-    /* color: whitesmoke; */
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    font-family: Roboto;
     margin: 0px;
 }
 
@@ -15,7 +16,7 @@ body {
 #button {
     width: 110px;
     height: 50px;
-    background-color: rgb(179, 146, 0);
+    background-color: rgb(0, 0, 0);
     padding: 5px;
     letter-spacing: 2px;
     font-size: 25px;
@@ -26,19 +27,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;   
-    border: 1px solid black;
+    border: 1px solid whitesmoke;
+    box-shadow:0px 0px 5px 1px whitesmoke;
 }
 
-#button:hover {
-    background-color: rgb(129, 111, 27);
-    letter-spacing: 5px;
+#button:hover, #button:focus {
+    background-color: whitesmoke;
     text-align: center;
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-weight: bolder;
-    height: 50px;
-    width: 135px;
     text-decoration: none;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
 
 }
 
@@ -61,12 +60,17 @@ body {
     width: 45%;
 }
 
-.player-header {
-    flex-grow: 1;
+.player-header { flex-grow: 1; }
+.player-img-container { flex-grow: 3; }
+
+#player-1-img {
+    border: 2px solid rgba(245, 245, 245, 0.678);
+    box-shadow: -3px 2px 13px rgb(0, 0, 0);
 }
 
-.player-img {
-    flex-grow: 3;   
+#player-2-img {
+    border: 2px solid rgba(245, 245, 245, 0.678);
+    box-shadow: 3px 2px 13px rgb(0, 0, 0);
 }
 
 #fight-btn {
@@ -75,14 +79,8 @@ body {
     width: 100px;
 }
 
-#p1 { 
-    background-color: steelblue;
-
-}
-
-#p2 {
-    background-color: firebrick;
-}
+#p1 { background-color: steelblue; }
+#p2 { background-color: firebrick; }
 
 #character-container {
     display: grid;
@@ -103,17 +101,40 @@ body {
 .playable-character {
     width: 100px;
     height: 100px;
-    border: 1px solid black; 
+    border: 1px solid whitesmoke; 
     padding: 5px;
     background-color: black;
 }
 
-.radio-btn {
+.radio-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* padding: 10px; */
+    width: fit-content;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
-    margin-bottom: 80px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: black;
+    background-color: whitesmoke;
 }
 
-.radio-container {
-    padding: 50px;
+.radio-container input{ display: none; }
+.radio-container label{
+    font-family: Roboto ;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.radio-container:hover{
+    background-color: black;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+}
+.radio-container:checked label{
+    background-color: black;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
 }
