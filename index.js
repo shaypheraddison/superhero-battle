@@ -1,4 +1,4 @@
 // main JS
 
-const apiKey = "e6bc055579731e7960ff8f0aa493dc3f";
-const apiUrl = "https://superheroapi.com/api/access-token";
+// REST API for superhero
+const apiUrl = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json";

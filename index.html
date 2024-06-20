@@ -14,42 +14,57 @@
     <div id="player-selection">
         <div class="display-container" id="p1">
             <div class="radio-container">
-                <input type="radio" class="radio-btn" name="player" value="Player 1">
+                <input type="radio" id="p1-radio" class="radio-btn" name="player" value="Player 1">
                 <label for="p1-radio">Player 1</label>
             </div>
-            <div class="player-img-container" id="display-p1">
-                <img src="resources/profile-images/red-hood-prof.png" alt="test1" class="player-img" id="player-1-img">
+            <div class="player-info">
+                <div class="player-img-container" id="display-p1">
+                    <img src="resources/profile-images/stock-fighter-left-prof.png" alt="test1" class="player-img" id="player-1-img">
+                </div>
+                <div class="stats">
+                    <ul class="powerstats" id="p1-powerstats">
+                        <h3 class="char-stats">TEST NAME HERE</h3>
+                        <li>Intelligence</li>
+                        <li>Strength</li>
+                        <li>Speed</li>
+                        <li>Durability</li>
+                        <li>Power</li>
+                        <li>Combat</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="display-container" id="fight-btn">
             <a href="" id="button">FIGHT!</a>
-            <h2 id="vs">VS</h3>
+            <h3 id="vs">VS</h3>
         </div>
 
         <div class="display-container" id="p2">
             <div class="radio-container">
-                <input type="radio" class="radio-btn" name="player" value="Player 2">
+                <input type="radio" id="p2-radio" class="radio-btn" name="player" value="Player 2">
                 <label for="p2-radio">Player 2</label>
             </div>
-            <div class="player-img-container" id="display-p2">
-                <img src="resources/profile-images/sauron-prof.png" class="player-img" alt="test2" id="player-2-img">
+            <div class="player-info">
+                <div class="player-img-container" id="display-p2">
+                    <img src="resources/profile-images/stock-fighter-right-prof.png" class="player-img" alt="test2" id="player-2-img">
+                </div>
+                <div class="stats">
+                    <ul class="powerstats" id="p2-powerstats">
+                        <h3 class="char-stats">TEST NAME HERE</h3>
+                        <li>Intelligence</li>
+                        <li>Strength</li>
+                        <li>Speed</li>
+                        <li>Durability</li>
+                        <li>Power</li>
+                        <li>Combat</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="character-container">
-        <div class="stats">
-            <h3 class="char-stats">Character Stats</h3>
-            <ul class="powerstats" id="p1-powerstats">
-                <li>Intelligence</li>
-                <li>Strength</li>
-                <li>Speed</li>
-                <li>Durability</li>
-                <li>Power</li>
-                <li>Combat</li>
-            </ul>
-        </div>
 
         <div id="choices">
             <img src="resources/thumbnails/moon-knight.png" class="playable-character" id="c1">
@@ -70,18 +85,6 @@
             <img src="resources/thumbnails/storm.png"  type="img" class="playable-character" id="c16"></img>
             <img src="resources/thumbnails/enchantress.png" type="img" class="playable-character" id="c17"></img>
             <img src="resources/thumbnails/all-might.png" type="img" class="playable-character" id="c18"></img>
-        </div>
-        
-        <div class="stats">
-            <h3 class="char-stats">Character Stats</h3>
-            <ul class="powerstats" id="p2-powerstats">
-                <li>Intelligence</li>
-                <li>Strength</li>
-                <li>Speed</li>
-                <li>Durability</li>
-                <li>Power</li>
-                <li>Combat</li>
-            </ul>
         </div>
     </div>
 </body>

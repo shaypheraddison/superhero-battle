@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "name": "All Might",
+    "powerstats": {
+        "intelligence": 50,
+        "strength": 100,
+        "speed": 75,
+        "durability": 50,
+        "power": 100,
+        "combat": 90
+    }
+}
