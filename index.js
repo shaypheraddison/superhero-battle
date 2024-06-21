@@ -1,5 +1,6 @@
 // REST API for superhero data
 const apiUrl = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api";
+const allMightJSON = "resources/all-might.json";
 
 // player radio buttons and fight button
 const buttons = {
@@ -83,4 +84,23 @@ const powerStats = {
         power: document.getElementById("p2-pwr"),
         combat: document.getElementById("p2-com"),
     }
+};
+
+async function getPlayerChoice() {
+    
 }
+
+
+
+
+
+
+
+// async function getCharPowerStats(id) {
+    
+// }
+
+
+// async function main() {
+
+// }
