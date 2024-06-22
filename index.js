@@ -1,11 +1,11 @@
 // REST API for superhero data
-const apiUrl = "https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api";
 const allMightJSON = "resources/all-might.json";
+const apiKey = "e6bc055579731e7960ff8f0aa493dc3f";
+// apiUrl - `https://www.superheroapi.com/api/${apiKey}/`
 
 // player radio buttons and fight button
 const buttons = {
-    player1Radio: document.getElementById("p1-radio"),
-    player2Radio: document.getElementById("p2-radio"),
+    playerRadio: document.querySelectorAll("input"),
     fightButton: document.getElementById("button")
 };
 
@@ -74,7 +74,7 @@ const powerStats = {
         speed: document.getElementById("p1-spd"),
         durability: document.getElementById("p1-dur"),
         power: document.getElementById("p1-pwr"),
-        combat: document.getElementById("p1-com"),
+        combat: document.getElementById("p1-com")
     },
     player2Stats: {
         intelligence: document.getElementById("p2-int"),
@@ -82,23 +82,53 @@ const powerStats = {
         speed: document.getElementById("p2-spd"),
         durability: document.getElementById("p2-dur"),
         power: document.getElementById("p2-pwr"),
-        combat: document.getElementById("p2-com"),
+        combat: document.getElementById("p2-com")
     }
 };
 
-async function getPlayerChoice() {
-    
-}
+const characterNames = [
+    "Bane", 
+    "Captain America", 
+    "Doctor Doom", 
+    "Donatello", 
+    "Enchantress", 
+    "Harley Quinn", 
+    "Kylo Ren", 
+    "Loki", 
+    "Master Chief", 
+    "Moon Knight", 
+    "Red Hood",
+    "Sauron",
+    "Scarlet Spider",
+    "Spider-Gwen",
+    "Storm", 
+    "Ultron",
+    "Vegeta"
+];
 
+async function getCharacterData(names) {
+    const characterData = {};
 
+    for (const name of names) {
+        // get json data
+        const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
+        const response = await fetch(apiUrl);
+        const jsonData = await response.json();
 
+        const character = jsonData.find(function(character) {
+            return character.name === name; 
+        })
 
-
-
-
-// async function getCharPowerStats(id) {
-    
-// }
+        if (character) {
+            characterData[name] = {
+                name: character.name,
+                powerstats: character.powerstats
+            };
+        };
+    };
+    console.log(characterData);
+    return characterData;
+};
 
 
 // async function main() {
