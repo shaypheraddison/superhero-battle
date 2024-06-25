@@ -1,8 +1,3 @@
-// REST API for superhero data
-const allMightJSON = "resources/all-might.json";
-const apiKey = "e6bc055579731e7960ff8f0aa493dc3f";
-// apiUrl - `https://www.superheroapi.com/api/${apiKey}/`
-
 // player radio buttons and fight button
 const buttons = {
     playerRadio: document.querySelectorAll("input"),
@@ -107,18 +102,28 @@ const characterNames = [
 ];
 
 async function getCharacterData(names) {
+    // get json data
+    const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
+    const response = await fetch(apiUrl);
+    const jsonData = await response.json();
+
     const characterData = {};
+    characterData["All Might"] = {
+        name: "All Might",
+        powerstats: {
+            "intelligence": 41,
+            "strength": 100,
+            "speed": 67,
+            "durability": 42,
+            "power": 100,
+            "combat": 93
+        }
+    };
 
     for (const name of names) {
-        // get json data
-        const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
-        const response = await fetch(apiUrl);
-        const jsonData = await response.json();
-
         const character = jsonData.find(function(character) {
             return character.name === name; 
-        })
-
+        });
         if (character) {
             characterData[name] = {
                 name: character.name,
@@ -130,7 +135,16 @@ async function getCharacterData(names) {
     return characterData;
 };
 
+// async function characterSelection(choices) {
+//     choices.forEach(funtion(choiceId {
 
-// async function main() {
-
+//     }))
 // }
+
+
+async function main() {
+    getCharacterData(characterNames);
+    // characterSelection();
+};
+
+main();

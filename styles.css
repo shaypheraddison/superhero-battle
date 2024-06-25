@@ -169,3 +169,24 @@ li {
 .powerstats h3 {
     font-size: 37px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 700px)  {
+    .display-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 45%;
+        height: 500px;
+    }
+
+    .player-img-container {
+        width: 50px;
+        image-resolution: 100dpi;
+    }
+
+    .character-container {
+        display: flex;
+        flex-grow: 3;
+    }
+}
