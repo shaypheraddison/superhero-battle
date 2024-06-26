@@ -10,7 +10,7 @@ const displayElements = {
     player2Character: document.getElementById("p2-character"),
     player1Stock: document.getElementById("player-1-img"),
     player2Stock: document.getElementById("player-2-img"),
-    playerChoices: document.querySelectorAll("#choices")
+    playerChoices: document.querySelectorAll(".pic-container")
 };
 
 // character images
@@ -101,7 +101,7 @@ const characterNames = [
     "Vegeta"
 ];
 
-async function getCharacterData(names) {
+async function getCharacterStats(names) {
     // get json data
     const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
     const response = await fetch(apiUrl);
@@ -121,13 +121,13 @@ async function getCharacterData(names) {
     };
 
     for (const name of names) {
-        const character = jsonData.find(function(character) {
+        const character = jsonData.find(character => {
             return character.name === name; 
         });
         if (character) {
             characterData[name] = {
                 name: character.name,
-                powerstats: character.powerstats
+                powerstats: character.powerstats,
             };
         };
     };
@@ -135,20 +135,25 @@ async function getCharacterData(names) {
     return characterData;
 };
 
-// async function characterSelection(choices) {
-//     choices.forEach(funtion(choiceId {
-
-//     }))
-// }
+async function getCharValue(choices) {
+    choices.forEach(characterId => {
+        console.log(characterId.id);
+        // const button = document.getElementById(characterId)
+        // button.addEventListener("click", function() {
+        //     const buttonValue = button.textContent;
+        //     console.log(buttonValue);
+        // });
+    });
+}
 
 async function battle() {
-    
+
 }
 
 
 async function main() {
-    getCharacterData(characterNames);
-    // characterSelection();
+    getCharacterStats(characterNames);
+    getCharValue(displayElements.playerChoices);
 };
 
 main();
