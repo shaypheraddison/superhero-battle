@@ -15,7 +15,7 @@ ul {
 li {
     padding: 3px;
     font-size: 20px;
-    display: block;
+    display: none;
 }
 
 #vs {
@@ -177,7 +177,7 @@ li {
     }
 
     li {
-        display: block;
+        display: none;
         font-size: small;
     }
 
@@ -257,7 +257,7 @@ li {
     }
     
     li {
-        display: block;
+        display: none;
         font-size: small;
         margin-left: 10px;
         font-size: 15px;
