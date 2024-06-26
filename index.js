@@ -141,6 +141,10 @@ async function getCharacterData(names) {
 //     }))
 // }
 
+async function battle() {
+    
+}
+
 
 async function main() {
     getCharacterData(characterNames);
