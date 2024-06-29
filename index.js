@@ -8,8 +8,8 @@ const buttons = {
 const displayElements = {
     player1Character: document.getElementById("p1-character"),
     player2Character: document.getElementById("p2-character"),
-    player1Stock: document.getElementById("player-1-img"),
-    player2Stock: document.getElementById("player-2-img"),
+    player1Image: document.getElementById("player-1-img"),
+    player2Image: document.getElementById("player-2-img"),
     playerChoices: document.querySelectorAll(".pic-container")
 };
 
@@ -101,6 +101,7 @@ const characterNames = [
     "Vegeta"
 ];
 
+
 async function getCharacterStats(names) {
     const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
     const response = await fetch(apiUrl);
@@ -136,20 +137,58 @@ async function getCharacterStats(names) {
     return characterData;
 };
 
-async function getCharValue(choices) {
-    choices.forEach(characterId => {
-        console.log(characterId.id);
+
+async function chooseFighter() {
+    const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
+    const response = await fetch(apiUrl);
+    const jsonData = await response.json();
+
+
+    const fighters = displayElements.playerChoices;
+
+    fighters.forEach(function(image) {
+        image.addEventListener("click", function() {
+            const imageName = image.getAttribute("name");
+            const choice = jsonData.find(function(character) {
+                return character.name === imageName;
+            });
+
+            // if (choice) {
+            //     if (playerSelection)
+            
+
+
+        })
+    })
+
+
+
+
+
+
+}
+
+// Global variable set for future reference in functions
+let playerSelecting = "";
+
+async function playerSelection() {
+    getCharacterStats(characterNames);
+
+    const radioButtons = buttons.playerRadio;
+
+    radioButtons.forEach(function(button) {
+        button.addEventListener("change", function() {
+            if (button.checked) {
+                return playerSelecting = button.value;
+            };
+        })
     });
 };
 
-// async function battle() {
-
-// }
 
 
 async function main() {
-    getCharacterStats(characterNames);
-    getCharValue(displayElements.playerChoices);
+    playerSelection();
 };
 
 main();
