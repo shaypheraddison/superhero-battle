@@ -102,13 +102,13 @@ const characterNames = [
 ];
 
 async function getCharacterStats(names) {
-    // get json data
     const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
     const response = await fetch(apiUrl);
     const jsonData = await response.json();
 
     const characterData = {};
     characterData["All Might"] = {
+        id: 1,
         name: "All Might",
         powerstats: {
             "intelligence": 41,
@@ -126,8 +126,9 @@ async function getCharacterStats(names) {
         });
         if (character) {
             characterData[name] = {
+                id: character.id,
                 name: character.name,
-                powerstats: character.powerstats,
+                powerstats: character.powerstats    
             };
         };
     };
@@ -138,17 +139,12 @@ async function getCharacterStats(names) {
 async function getCharValue(choices) {
     choices.forEach(characterId => {
         console.log(characterId.id);
-        // const button = document.getElementById(characterId)
-        // button.addEventListener("click", function() {
-        //     const buttonValue = button.textContent;
-        //     console.log(buttonValue);
-        // });
     });
-}
+};
 
-async function battle() {
+// async function battle() {
 
-}
+// }
 
 
 async function main() {
