@@ -11,8 +11,8 @@ const displayElements = {
     player1Image: document.getElementById("player-1-img"),
     player2Image: document.getElementById("player-2-img"),
     playerChoices: document.querySelectorAll(".pic-container"),
-    player1StatsBox: document.getElementById("p1-stats"),
-    player2StatsBox: document.getElementById("p2-stats")
+    player1StatsBox: document.querySelectorAll("li.p1-ps"),
+    player2StatsBox: document.querySelectorAll("li.p2-ps")
 };
 
 // character images
@@ -64,24 +64,24 @@ const images = {
 };
 
 // player choice power stats
-const powerStats = {
-    player1Stats: {
-        intelligence: document.getElementById("p1-int"),
-        strength: document.getElementById("p1-str"),
-        speed: document.getElementById("p1-spd"),
-        durability: document.getElementById("p1-dur"),
-        power: document.getElementById("p1-pwr"),
-        combat: document.getElementById("p1-com")
-    },
-    player2Stats: {
-        intelligence: document.getElementById("p2-int"),
-        strength: document.getElementById("p2-str"),
-        speed: document.getElementById("p2-spd"),
-        durability: document.getElementById("p2-dur"),
-        power: document.getElementById("p2-pwr"),
-        combat: document.getElementById("p2-com")
-    }
-};
+// const powerStats = {
+//     player1Stats: {
+//         intelligence: document.getElementById("p1-int"),
+//         strength: document.getElementById("p1-str"),
+//         speed: document.getElementById("p1-spd"),
+//         durability: document.getElementById("p1-dur"),
+//         power: document.getElementById("p1-pwr"),
+//         combat: document.getElementById("p1-com")
+//     },
+//     player2Stats: {
+//         intelligence: document.getElementById("p2-int"),
+//         strength: document.getElementById("p2-str"),
+//         speed: document.getElementById("p2-spd"),
+//         durability: document.getElementById("p2-dur"),
+//         power: document.getElementById("p2-pwr"),
+//         combat: document.getElementById("p2-com")
+//     }
+// };
 
 const characterNames = [
     "Bane", 
@@ -139,15 +139,22 @@ async function getCharacterStats(names) {
 };
 
 async function getImageData() {
+    const characterStats = await getCharacterStats(characterNames);
     const choices = displayElements.playerChoices;
     let imageName = "";
+    let selectedCharacterStats = "";
     choices.forEach(function(image) {
         image.addEventListener("click", function(){
             const imageName = image.getAttribute("name")
-            console.log(imageName);
+            if (characterStats[imageName]) {
+                selectedCharacterStats = characterStats[imageName].powerstats;
+                console.log("this statement works");
+                console.log(imageName);
+                console.log(characterStats[imageName].powerstats);
+            }
         });
     });
-    return imageName
+    return [ selectedCharacterStats, imageName ] 
 };
 
 // getImageData();
@@ -156,7 +163,7 @@ async function getImageData() {
 async function playerSelection() {
     const radioButtons = buttons.playerRadio;
 
-    // new promise needed for checking if the DOM events have been changed (selecting radio buttons)
+    // new promise needed for checking if the DOM events have been changed (selecting radio buttons), if they do change run rest of function
     return new Promise(function(resolve) {
         function handleChange(event) {
             if (event.target.checked) {
@@ -175,33 +182,25 @@ async function playerSelection() {
 
 
 async function main() {
-    getCharacterStats(characterNames);
-    getImageData();
+    // const stats = getCharacterStats(characterNames);
+    const imageName = getImageData();
 
     while (true) {        
         const selectedPlayer = await playerSelection();
-        const p1Stats = powerStats.player1Stats;
-        const p2Stats = powerStats.player2Stats;
-
+        const p1Stats = displayElements.player1StatsBox;
+        const p2Stats = displayElements.player2StatsBox;
         console.log(selectedPlayer);
 
         if (selectedPlayer === "Player 1") {
             console.log("This was a success!")
-
-            p1Stats.intelligence.style.display = "block"
-            p1Stats.strength.style.display = "block"
-            p1Stats.speed.style.display = "block"
-            p1Stats.durability.style.display = "block"
-            p1Stats.power.style.display = "block"
-            p1Stats.combat.style.display = "block"
-
-
-
-
-
-
+            console.log(p1Stats);
+            for (let stat of p1Stats) {
+                console.log(stat);
+                stat.setAttribute("display", "block");
+            }
         } else if (selectedPlayer === "Player 2") {
             console.log("Player 2 button was successfully clicked")
+            console.log(p2Stats);
         }
     };
 };

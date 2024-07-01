@@ -12,7 +12,8 @@ ul {
     margin: 0;
 }
 
-li {
+li.p1-ps,
+li.p2-ps {
     padding: 3px;
     font-size: 20px;
     display: none;
