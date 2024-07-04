@@ -168,7 +168,9 @@ li.p2-ps {
 }
 
 .powerstats h3 {
+    padding: 10px;
     font-size: 37px;
+    /* display: none; */
 }
 
 @media screen and (min-width: 320px) and (max-width: 935px)  {

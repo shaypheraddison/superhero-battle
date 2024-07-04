@@ -1,19 +1,15 @@
 // player radio buttons and fight button
-const buttons = {
-    playerRadio: document.querySelectorAll("input[name='player']"),
-    fightButton: document.getElementById("button")
-};
+const radioButtons = document.querySelectorAll("input[name='player']");
+const fightButton = document.getElementById("button");
 
 // player-character choice
-const displayElements = {
-    player1Character: document.getElementById("p1-character"),
-    player2Character: document.getElementById("p2-character"),
-    player1Image: document.getElementById("player-1-img"),
-    player2Image: document.getElementById("player-2-img"),
-    playerChoices: document.querySelectorAll(".pic-container"),
-    player1StatsBox: document.querySelectorAll("li.p1-ps"),
-    player2StatsBox: document.querySelectorAll("li.p2-ps")
-};
+const selectedNameP1 = document.getElementById("p1-character");
+const selectedNameP2 = document.getElementById("p2-character");
+const playerChoices = document.querySelectorAll(".pic-container");
+const player1Image = document.getElementById("player-1-img");
+const player2Image = document.getElementById("player-2-img");
+const player1StatsBox = document.querySelectorAll("li.p1-ps");
+const player2StatsBox = document.querySelectorAll("li.p2-ps");
 
 // character images
 const images = {
@@ -63,26 +59,6 @@ const images = {
     }
 };
 
-// player choice power stats
-// const powerStats = {
-//     player1Stats: {
-//         intelligence: document.getElementById("p1-int"),
-//         strength: document.getElementById("p1-str"),
-//         speed: document.getElementById("p1-spd"),
-//         durability: document.getElementById("p1-dur"),
-//         power: document.getElementById("p1-pwr"),
-//         combat: document.getElementById("p1-com")
-//     },
-//     player2Stats: {
-//         intelligence: document.getElementById("p2-int"),
-//         strength: document.getElementById("p2-str"),
-//         speed: document.getElementById("p2-spd"),
-//         durability: document.getElementById("p2-dur"),
-//         power: document.getElementById("p2-pwr"),
-//         combat: document.getElementById("p2-com")
-//     }
-// };
-
 const characterNames = [
     "Bane", 
     "Captain America", 
@@ -102,6 +78,16 @@ const characterNames = [
     "Ultron",
     "Vegeta"
 ];
+
+let currentPlayer = "";
+
+function updateCurrentPlayer() {
+    radioButtons.forEach(function(button) {
+        button.addEventListener("change", function(event) {
+            currentPlayer = event.target.value;
+        });
+    });
+};
 
 async function getCharacterStats(names) {
     const apiUrl = `https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json`;
@@ -134,46 +120,52 @@ async function getCharacterStats(names) {
             };
         };
     };
-    console.log(characterData);
+    // console.log(characterData);
     return characterData;
 };
 
-async function getImageData() {
+async function getImageData(callback) {
     const characterStats = await getCharacterStats(characterNames);
-    const choices = displayElements.playerChoices;
-    let imageName = "";
-    let selectedCharacterStats = "";
-    choices.forEach(function(image) {
-        image.addEventListener("click", function(){
-            const imageName = image.getAttribute("name")
+
+    playerChoices.forEach(function(image) {
+        image.addEventListener("click", async function(){
+            let imageName = image.getAttribute("name")
             if (characterStats[imageName]) {
-                selectedCharacterStats = characterStats[imageName].powerstats;
-                console.log("this statement works");
-                console.log(imageName);
-                console.log(characterStats[imageName].powerstats);
+                let selectedCharacterStats = characterStats[imageName].powerstats;
+                // console.log(imageName);
+                // console.log(characterStats[imageName].powerstats);
+                callback({ imageName, selectedCharacterStats, player: currentPlayer });
             }
         });
     });
-    return [ selectedCharacterStats, imageName ] 
 };
 
-// getImageData();
+function setPlayerImage() {
+    getImageData(function(character) {
+        if (character.player === "Player 1") {
+            console.log("Success P1");
+            console.log(character.imageName);
+            selectedNameP1.textContent = character.imageName;
+            selectedNameP1.style.display = "block";
+            // player1Image.setAttribute("src", )
+            player1StatsBox.forEach(function(p1Statbox) {
+                p1Statbox.style.display = "block";
 
-
-async function playerSelection() {
-    const radioButtons = buttons.playerRadio;
-
-    // new promise needed for checking if the DOM events have been changed (selecting radio buttons), if they do change run rest of function
-    return new Promise(function(resolve) {
-        function handleChange(event) {
-            if (event.target.checked) {
-                resolve(event.target.value)}
-        };
-        radioButtons.forEach(function(button) {
-            button.addEventListener("change", handleChange);
-        });
+            });
+    
+        } else if (character.player === "Player 2") {
+            console.log("Succes P2");
+            console.log(character.imageName);
+            selectedNameP2.textContent = character.imageName;
+            selectedNameP2.style.display = "block";
+            player2StatsBox.forEach(function(p2Statbox) {
+                p2Statbox.style.display = "block";
+            });
+        }
     });
 }
+
+
 
 
 // async function battle() {
@@ -181,30 +173,30 @@ async function playerSelection() {
 // }
 
 
-async function main() {
-    // const stats = getCharacterStats(characterNames);
-    const imageName = getImageData();
+// async function main() {
+//     // const stats = getCharacterStats(characterNames);
+//     const imageName = getImageData();
 
-    while (true) {        
-        const selectedPlayer = await playerSelection();
-        const p1Stats = displayElements.player1StatsBox;
-        const p2Stats = displayElements.player2StatsBox;
-        console.log(selectedPlayer);
+//     while (true) {        
+//         const selectedPlayer = await playerSelection();
+//         const p1Stats = displayElements.player1StatsBox;
+//         const p2Stats = displayElements.player2StatsBox;
+//         console.log(selectedPlayer);
 
-        if (selectedPlayer === "Player 1") {
-            console.log("This was a success!")
-            console.log(p1Stats);
-            for (let stat of p1Stats) {
-                console.log(stat);
-                stat.setAttribute("display", "block");
-            }
-        } else if (selectedPlayer === "Player 2") {
-            console.log("Player 2 button was successfully clicked")
-            console.log(p2Stats);
-        }
-    };
-};
+//         if (selectedPlayer === "Player 1") {
+//             console.log("This was a success!")
+//             // console.log(p1Stats);
+//             for (let stat of p1Stats) {
+//                 console.log(stat);
+//             }
+//         } else if (selectedPlayer === "Player 2") {
+//             console.log("Player 2 button was successfully clicked")
+//             console.log(p2Stats);
+//         }
+//     };
+// };
 
 document.addEventListener("DOMContentLoaded", function() {
-    main();
+    updateCurrentPlayer();
+    setPlayerImage();
 });
