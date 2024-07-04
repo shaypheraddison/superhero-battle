@@ -36,21 +36,21 @@ const images = {
         vegeta: "resources/thumbnails/vegeta.png"
     },
     profiles: {
-        allMight: "resources/profile-images/allmight-prof.png",
+        allMight: "resources/profile-images/all-might-prof.png",
         bane: "resources/profile-images/bane-prof.png",
-        captainAmerica: "resources/profile-images/captainamerica-prof.png",
-        doctorDoom: "resources/profile-images/doctordoom-prof.png",
+        captainAmerica: "resources/profile-images/captain-america-prof.png",
+        doctorDoom: "resources/profile-images/doctor-doom-prof.png",
         donatello: "resources/profile-images/donatello-prof.png",
         enchantress: "resources/profile-images/enchantress-prof.png",
-        harleyQuinn: "resources/profile-images/harleyquinn-prof.png",
-        kyloRen: "resources/profile-images/kyloren-prof.png",
+        harleyQuinn: "resources/profile-images/harley-quinn-prof.png",
+        kyloRen: "resources/profile-images/kylo-ren-prof.png",
         loki: "resources/profile-images/loki-prof.png",
-        masterChief: "resources/profile-images/masterchief-prof.png",
-        moonKnight: "resources/profile-images/moonknight-prof.png",
-        redHood: "resources/profile-images/redhood-prof.png",
+        masterChief: "resources/profile-images/master-chief-prof.png",
+        moonKnight: "resources/profile-images/moon-knight-prof.png",
+        redHood: "resources/profile-images/red-hood-prof.png",
         sauron: "resources/profile-images/sauron-prof.png",
-        scarletSpider: "resources/profile-images/scarletspider-prof.png",
-        spiderGwen: "resources/profile-images/spidergwen.png",
+        scarletSpider: "resources/profile-images/scarlet-spider-prof.png",
+        spiderGwen: "resources/profile-images/spider-gwen-prof.png",
         stockLeft: "resources/profile-images/stock-fighter-left-prof.png",
         stockRight: "resources/profile-images/stock-fighter-right-prof.png",
         storm: "resources/profile-images/storm-prof.png",
@@ -140,32 +140,44 @@ async function getImageData(callback) {
     });
 };
 
+function toCamelCase(str) {
+    if (str.toLowerCase() === 'spider-gwen') {
+        return 'spiderGwen';
+    };
+
+    let words = str.toLowerCase().split(' ');
+    for (let i = 1; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].substring(1);
+    };
+    return words.join('');
+};
+
 function setPlayerImage() {
     getImageData(function(character) {
+        let camelCaseName = toCamelCase(character.imageName);
         if (character.player === "Player 1") {
-            console.log("Success P1");
-            console.log(character.imageName);
             selectedNameP1.textContent = character.imageName;
             selectedNameP1.style.display = "block";
-            player1Image.src = images.profiles[character.imageName.toLowerCase().replace(" ","")];
-            console.log(player1Image.src);
+            player1Image.src = images.profiles[camelCaseName];
             player1StatsBox.forEach(function(stats, index) {
                 stats.style.display = "block";
-                stats.textContent = `${stats.textContent} ${Object.values(character.selectedCharacterStats)[index]}`;
+                let statName = stats.textContent.split("-")[0];
+                stats.textContent = `${statName} - ${Object.values(character.selectedCharacterStats)[index]}`;
 
             });
     
         } else if (character.player === "Player 2") {
-            console.log("Succes P2");
-            console.log(character.imageName);
             selectedNameP2.textContent = character.imageName;
             selectedNameP2.style.display = "block";
-            player2StatsBox.forEach(function(p2Statbox) {
-                p2Statbox.style.display = "block";
+            player2Image.src = images.profiles[camelCaseName];
+            player2StatsBox.forEach(function(stats, index) {
+                stats.style.display = "block";
+                let statName = stats.textContent.split("-")[0];
+                stats.textContent = `${statName} - ${Object.values(character.selectedCharacterStats)[index]}`;
             });
         }
     });
-}
+};
 
 
 
