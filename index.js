@@ -36,21 +36,21 @@ const images = {
         vegeta: "resources/thumbnails/vegeta.png"
     },
     profiles: {
-        allMight: "resources/profile-images/all-might-prof.png",
+        allMight: "resources/profile-images/allmight-prof.png",
         bane: "resources/profile-images/bane-prof.png",
-        captainAmerica: "resources/profile-images/captain-america-prof.png",
-        doctorDoom: "resources/profile-images/doctor-doom-prof.png",
+        captainAmerica: "resources/profile-images/captainamerica-prof.png",
+        doctorDoom: "resources/profile-images/doctordoom-prof.png",
         donatello: "resources/profile-images/donatello-prof.png",
         enchantress: "resources/profile-images/enchantress-prof.png",
-        harleyQuinn: "resources/profile-images/harley-quinn-prof.png",
-        kyloRen: "resources/profile-images/kylo-ren-prof.png",
+        harleyQuinn: "resources/profile-images/harleyquinn-prof.png",
+        kyloRen: "resources/profile-images/kyloren-prof.png",
         loki: "resources/profile-images/loki-prof.png",
-        masterChief: "resources/profile-images/master-chief-prof.png",
-        moonKnight: "resources/profile-images/moon-knight-prof.png",
-        redHood: "resources/profile-images/red-hood-prof.png",
+        masterChief: "resources/profile-images/masterchief-prof.png",
+        moonKnight: "resources/profile-images/moonknight-prof.png",
+        redHood: "resources/profile-images/redhood-prof.png",
         sauron: "resources/profile-images/sauron-prof.png",
-        scarletSpider: "resources/profile-images/scarlet-spider-prof.png",
-        spiderGwen: "resources/profile-images/spider-gwen.png",
+        scarletSpider: "resources/profile-images/scarletspider-prof.png",
+        spiderGwen: "resources/profile-images/spidergwen.png",
         stockLeft: "resources/profile-images/stock-fighter-left-prof.png",
         stockRight: "resources/profile-images/stock-fighter-right-prof.png",
         storm: "resources/profile-images/storm-prof.png",
@@ -147,9 +147,11 @@ function setPlayerImage() {
             console.log(character.imageName);
             selectedNameP1.textContent = character.imageName;
             selectedNameP1.style.display = "block";
-            // player1Image.setAttribute("src", )
-            player1StatsBox.forEach(function(p1Statbox) {
-                p1Statbox.style.display = "block";
+            player1Image.src = images.profiles[character.imageName.toLowerCase().replace(" ","")];
+            console.log(player1Image.src);
+            player1StatsBox.forEach(function(stats, index) {
+                stats.style.display = "block";
+                stats.textContent = `${stats.textContent} ${Object.values(character.selectedCharacterStats)[index]}`;
 
             });
     
