@@ -99,12 +99,12 @@ async function getCharacterStats(names) {
         id: 1,
         name: "All Might",
         powerstats: {
+            "combat": 93,
+            "durability": 100,
             "intelligence": 41,
-            "strength": 100,
-            "speed": 67,
-            "durability": 42,
             "power": 100,
-            "combat": 93
+            "speed": 67,
+            "strength": 93
         }
     };
 
@@ -120,7 +120,6 @@ async function getCharacterStats(names) {
             };
         };
     };
-    // console.log(characterData);
     return characterData;
 };
 
@@ -132,8 +131,6 @@ async function getImageData(callback) {
             let imageName = image.getAttribute("name")
             if (characterStats[imageName]) {
                 let selectedCharacterStats = characterStats[imageName].powerstats;
-                // console.log(imageName);
-                // console.log(characterStats[imageName].powerstats);
                 callback({ imageName, selectedCharacterStats, player: currentPlayer });
             }
         });
@@ -179,38 +176,45 @@ function setPlayerImage() {
     });
 };
 
+async function calculateStats(character) {
+    // creating new promise to calculate the stats and determine their random multiplier
+    // necessary to make a new promise due the the async nature of this function to begin with
+    return new Promise(function(resolve) {
+        getImageData(function(character) {
+            let totalStats = character.selectedCharacterStats.combat + character.selectedCharacterStats.durability + character.selectedCharacterStats.intelligence + character.selectedCharacterStats.power + character.selectedCharacterStats.speed + character.selectedCharacterStats.strength;
+            let randomMultiplier = Math.floor(Math.random() * 6 + 1) / 2;
+    
+            resolve(totalStats * randomMultiplier);
+        });
+    });
+};
 
 
+async function simulateFight(player1, player2, callback) {
+    let score1 = await calculateStats(player1);
+    let score2 = await calculateStats(player2);
+    console.log(score1);
+    console.log(score2);
 
-// async function battle() {
+    fightButton.addEventListener("click", async function(event) {
+        event.preventDefault();
 
-// }
+        if (score1 > score2) {
+            console.log("Player 1 wins !");
+            callback(player1)
+        } else {
+            console.log("Player 2 wins !");
+            callback(player2)
+        };
+    });
+};
 
-
-// async function main() {
-//     // const stats = getCharacterStats(characterNames);
-//     const imageName = getImageData();
-
-//     while (true) {        
-//         const selectedPlayer = await playerSelection();
-//         const p1Stats = displayElements.player1StatsBox;
-//         const p2Stats = displayElements.player2StatsBox;
-//         console.log(selectedPlayer);
-
-//         if (selectedPlayer === "Player 1") {
-//             console.log("This was a success!")
-//             // console.log(p1Stats);
-//             for (let stat of p1Stats) {
-//                 console.log(stat);
-//             }
-//         } else if (selectedPlayer === "Player 2") {
-//             console.log("Player 2 button was successfully clicked")
-//             console.log(p2Stats);
-//         }
-//     };
-// };
+function showWinner(winner) {
+    console.log(winner + " is the Champion!");
+};
 
 document.addEventListener("DOMContentLoaded", function() {
     updateCurrentPlayer();
     setPlayerImage();
+    simulateFight("Player 1", "Player 2", showWinner);
 });
