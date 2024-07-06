@@ -11,6 +11,8 @@ const player2Image = document.getElementById("player-2-img");
 const player1StatsBox = document.querySelectorAll("li.p1-ps");
 const player2StatsBox = document.querySelectorAll("li.p2-ps");
 
+let currentPlayer = "";
+
 // character images
 const images = {
     thumbnails: {
@@ -78,8 +80,6 @@ const characterNames = [
     "Ultron",
     "Vegeta"
 ];
-
-let currentPlayer = "";
 
 function updateCurrentPlayer() {
     radioButtons.forEach(function(button) {
@@ -176,7 +176,7 @@ function setPlayerImage() {
     });
 };
 
-async function calculateStats(character) {
+async function calculateStats() {
     // creating new promise to calculate the stats and determine their random multiplier
     // necessary to make a new promise due the the async nature of this function to begin with
     return new Promise(function(resolve) {
@@ -188,7 +188,6 @@ async function calculateStats(character) {
         });
     });
 };
-
 
 async function simulateFight(player1, player2, callback) {
     let score1 = await calculateStats(player1);
@@ -210,7 +209,7 @@ async function simulateFight(player1, player2, callback) {
 };
 
 function showWinner(winner) {
-    console.log(winner + " is the Champion!");
+    alert(winner + " is the Champion!");
 };
 
 document.addEventListener("DOMContentLoaded", function() {
