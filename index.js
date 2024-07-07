@@ -208,9 +208,9 @@ async function simulateFight(player1, player2, callback) {
     });
 };
 
-function showWinner(winner) {
-    alert(winner + " is the Champion!");
-};
+// function showWinner(winner) {
+//     alert(winner + " is the Champion!");
+// };
 
 document.addEventListener("DOMContentLoaded", function() {
     updateCurrentPlayer();
