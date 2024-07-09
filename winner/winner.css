@@ -19,8 +19,16 @@ h2 {
     text-align: center;
 }
 
-.image-container {
-    width: 600px;
+img {
+    border: 1px solid whitesmoke;
+}
+
+#banner {
+    animation: 3s linear 1s infinite running;
+}
+
+@keyframes #banner {
+    
 }
 
 
