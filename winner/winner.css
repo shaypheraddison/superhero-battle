@@ -3,68 +3,27 @@ body {
     color: whitesmoke;
     font-family: Roboto;
     margin: 0px;
+    background-image: url(../resources/trophy.png);
+    background-repeat: no-repeat;
+    background-size: inherit;
 }
 
 #main-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: 500px;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin: 150px 150px 0px 0px;
 }
 
-#column-1 {
-    background-color: steelblue; 
-    width: 45%;
-}
-
-#column-2 {
-    display: relative;
-    width: 10%;
+h2 {
     text-align: center;
 }
 
-#column-3 {
-    background-color: firebrick; 
-    width: 45%;
+.image-container {
+    width: 600px;
 }
 
-/* #winner {
-    width: 350px;
-    height: 500px;
-} */
-
-#loser {
-    width: 60px;
-    height: 60px;
-}
 
 @media screen and (min-width:320px) and (max-width:935px) {
-    #main-container {
-        height: 500px;
-        display: flex;
-    }
 
-    .background {
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    .image-container {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
-    #winner {
-        width: 120px;
-        height: 200px;
-    }
-
-    #loser {
-        width: 50px;
-        height: 50px;
-    }
 }

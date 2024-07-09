@@ -15,28 +15,6 @@ let currentPlayer = "";
 
 // character images
 const images = {
-    thumbnails: {
-        allMight: "resources/thumbnails/all-might.png",
-        bane: "resources/thumbnails/bane.png",
-        captainAmerica: "resources/thumbnails/captain-america.png",
-        doctorDoom: "resources/thumbnails/doctor-doom.png",
-        donatello: "resources/thumbnails/donatello.png",
-        enchantress: "resources/thumbnails/enchantress.png",
-        harleyQuinn: "resources/thumbnails/harley-quinn.png",
-        kyloRen: "resources/thumbnails/kylo-ren.png",
-        loki: "resources/thumbnails/loki.png",
-        masterChief: "resources/thumbnails/master-chief.png",
-        moonKnight: "resources/thumbnails/moon-knight.png",
-        redHood: "resources/thumbnails/red-hood.png",
-        sauron: "resources/thumbnails/sauron.png",
-        scarletSpider: "resources/thumbnails/scarlet-spider.png",
-        spiderGwen: "resources/thumbnails/spider-gwen.png",
-        stockLeft: "resources/thumbnails/stock-fighter-left.png",
-        stockRight: "resources/thumbnails/stock-fighter-right.png",
-        storm: "resources/thumbnails/storm.png",
-        ultron: "resources/thumbnails/ultron.png",
-        vegeta: "resources/thumbnails/vegeta.png"
-    },
     profiles: {
         allMight: "resources/profile-images/all-might-prof.png",
         bane: "resources/profile-images/bane-prof.png",
