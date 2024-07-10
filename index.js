@@ -213,8 +213,8 @@ async function simulateFight() {
         console.log('Winner Name:', winnerName);
         console.log('Winner Image:', winnerImage);
 
-        localStorage.setItem("winnerName", winnerName);
-        localStorage.setItem("winnerImage", winnerImage);
+        sessionStorage.setItem("winnerName", winnerName);
+        sessionStorage.setItem("winnerImage", winnerImage);
 
         window.location.href = "winner/winner.html";
     });
