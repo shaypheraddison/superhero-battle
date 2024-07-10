@@ -216,7 +216,7 @@ async function simulateFight() {
         sessionStorage.setItem("winnerName", winnerName);
         sessionStorage.setItem("winnerImage", winnerImage);
 
-        window.location.href = "winner/winner.html";
+        setTimeout(function(){ window.location.href = "winner/winner.html"; }, 650);
     });
 };
 
