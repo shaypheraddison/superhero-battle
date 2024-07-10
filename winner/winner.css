@@ -1,0 +1,127 @@
+body {
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    font-family: Roboto;
+    margin: 0px;
+    background-image: url(../resources/trophy.png);
+    background-repeat: no-repeat;
+    background-size: inherit;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin: 150px 150px 0px 0px;
+}
+
+h2 {
+    text-align: end;
+    width: auto;
+    font-size: 60px;
+}
+
+img {
+    border: 1px solid whitesmoke;
+    box-shadow:0px 0px 4px 2px whitesmoke;
+    position: relative;
+    animation: slide-in 1s linear;
+  }
+  
+  @keyframes slide-in {
+    0% {
+        transform: translateX(-500%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 100px;
+    background-color: rgba(255, 217, 0, 0.205);
+    color: rgb(199, 0, 0);
+}
+
+.line {
+    background-color: rgba(255, 217, 0, 0.205);
+    height: 5px;
+}
+
+#above {
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+#below {
+    margin-top: 8px;
+}
+
+#banner {
+    width: 100%;
+    margin-right: 155px;
+    white-space: nowrap;
+    animation: scrolling 3s linear;
+}
+
+@keyframes scrolling {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:550px) {
+    #winner {
+        height: 300px;
+        margin-left: 100px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    #main-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: start;
+        margin: 150px 0px 0px 0px;
+    }
+
+    #banner {
+        width: 100%;
+        white-space: nowrap;
+        animation: scrolling 2s linear;
+    }
+}
+
+/* Need to perfect the centering on this media query after review */
+@media screen and (min-width:551px) and (max-width:850px) {
+    #winner {
+        height: 300px;
+        margin-left: 100px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    #main-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin: 150px 0px 0px 0px;
+    }
+
+    #banner {
+        width: 100%;
+        white-space: nowrap;
+        animation: scrolling 2s linear;
+    }
+}
