@@ -16,22 +16,100 @@ body {
 }
 
 h2 {
-    text-align: center;
+    text-align: end;
+    width: auto;
+    font-size: 60px;
 }
 
 img {
     border: 1px solid whitesmoke;
+    box-shadow:0px 0px 6px 2px whitesmoke;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 50px;
+    height: 100px;
+    background-color: rgba(255, 217, 0, 0.205);
+    color: whitesmoke;
+    -webkit-text-fill-color: black;
+    -webkit-text-stroke: 0.5px;
+    border-top: 1px solid rgba(255, 217, 0, 0.205);
+    border-bottom: 1px solid rgba(255, 217, 0, 0.205);  
 }
 
 #banner {
-    animation: 3s linear 1s infinite running;
+    width: 100%;
+    white-space: nowrap;
+    animation: scrolling 15s linear infinite;
 }
 
-@keyframes #banner {
+@keyframes scrolling {
+    0% {
+        transform: translateX(70%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+@media screen and (min-width:320px) and (max-width:750px) {
+    #main-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin: 150px 0px 0px 0px;
+    }
+
+    #banner {
+        width: 100%;
+        white-space: nowrap;
+        animation: scrolling 6s linear infinite;
+    }
     
+    @keyframes scrolling {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
 }
 
+@media screen and (min-width:751px) and (max-width:900px) {
+    #banner {
+        width: 100%;
+        white-space: nowrap;
+        animation: scrolling 10s linear infinite;
+    }
+    
+    @keyframes scrolling {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+}
 
-@media screen and (min-width:320px) and (max-width:935px) {
-
+@media screen and (min-width:901px) and (max-width:1250px) {
+    #banner {
+        width: 100%;
+        white-space: nowrap;
+        animation: scrolling 10s linear infinite;
+    }
+    
+    @keyframes scrolling {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
 }
