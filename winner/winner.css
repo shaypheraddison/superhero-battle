@@ -8,6 +8,20 @@ body {
     background-size: inherit;
 }
 
+a {
+    font-size: 20px;
+    display: block;
+    width: 12px;
+    text-decoration: none;
+    margin: 10px 0px 0px 97%;
+    color: rgba(255, 217, 0, 0.774);
+}
+
+a:hover {
+    -webkit-text-fill-color: whitesmoke;
+    -webkit-text-stroke: 1px;
+}
+
 #main-container {
     display: flex;
     flex-direction: column-reverse;
