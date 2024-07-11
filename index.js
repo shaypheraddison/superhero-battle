@@ -11,8 +11,6 @@ const player2Image = document.getElementById("player-2-img");
 const player1StatsBox = document.querySelectorAll("li.p1-ps");
 const player2StatsBox = document.querySelectorAll("li.p2-ps");
 
-let currentPlayer = "";
-
 // character images
 const images = {
     profiles: {
@@ -80,6 +78,8 @@ const characterNames = [
     "Ultron",
     "Vegeta"
 ];
+
+let currentPlayer = "";
 
 function updateCurrentPlayer() {
     radioButtons.forEach(function(button) {
@@ -160,7 +160,6 @@ function setPlayerImage() {
                 stats.style.display = "block";
                 let statName = stats.textContent.split("-")[0];
                 stats.textContent = `${statName} - ${Object.values(character.selectedCharacterStats)[index]}`;
-
             });
     
         } else if (character.player === "Player 2") {
@@ -177,13 +176,15 @@ function setPlayerImage() {
 };
 
 async function calculateStats() {
-    // creating new promise to calculate the stats and determine their random multiplier
-    // necessary to make a new promise due the the async nature of this function to begin with
     return new Promise(function(resolve) {
         getImageData(function(character) {
-            let totalStats = character.selectedCharacterStats.combat + character.selectedCharacterStats.durability + character.selectedCharacterStats.intelligence + character.selectedCharacterStats.power + character.selectedCharacterStats.speed + character.selectedCharacterStats.strength;
+            let totalStats = 0;
+            for (let stat in character.selectedCharacterStats) {
+                totalStats += character.selectedCharacterStats[stat]
+            };
             let randomMultiplier = Math.floor(Math.random() * 6 + 1) / 2;
     
+            //as long as the promise is fulfilled the resolve functions runs to do the multiplication for the stat totals
             resolve(totalStats * randomMultiplier);
         });
     });
@@ -192,8 +193,6 @@ async function calculateStats() {
 async function simulateFight() {
     let score1 = await calculateStats();
     let score2 = await calculateStats();
-    console.log(score1);
-    console.log(score2);
 
     fightButton.addEventListener("click", async function(event) {
         event.preventDefault();
@@ -201,28 +200,29 @@ async function simulateFight() {
         let winnerName = "";
         let winnerImage = "";
         if (score1 > score2) {
-            console.log("Player 1 wins !");
             winnerName = selectedNameP1.textContent;            
             winnerImage = images.victory[toCamelCase(winnerName)];
         } else {
-            console.log("Player 2 wins !");
             winnerName = selectedNameP2.textContent;
             winnerImage = images.victory[toCamelCase(winnerName)];
         };
 
-        console.log('Winner Name:', winnerName);
-        console.log('Winner Image:', winnerImage);
-
         sessionStorage.setItem("winnerName", winnerName);
         sessionStorage.setItem("winnerImage", winnerImage);
 
-        setTimeout(function(){ window.location.href = "winner/winner.html"; }, 650);
+        //set a timeout to cause a delay in the winning page showing up to build up suspense
+        setTimeout(function(){ 
+            window.location.href = "winner/winner.html"; 
+        }, 650);
     });
 };
 
+async function main() {
+    document.addEventListener("DOMContentLoaded", function() {
+        updateCurrentPlayer();
+        setPlayerImage();
+        simulateFight();
+    });
+};
 
-document.addEventListener("DOMContentLoaded", function() {
-    updateCurrentPlayer();
-    setPlayerImage();
-    simulateFight();
-});
+main();
