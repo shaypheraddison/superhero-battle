@@ -108,20 +108,10 @@ footer {
         margin-left: 100px;
     }
 
-    h2 {
-        font-size: 40px;
-    }
-
     #main-container {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
         margin: 150px 0px 0px 0px;
-    }
-
-    #banner {
-        width: 100%;
-        white-space: nowrap;
-        animation: scrolling 2s linear;
     }
 }
