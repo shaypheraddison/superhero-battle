@@ -11,9 +11,9 @@ body {
 a {
     font-size: 20px;
     display: block;
-    width: 12px;
+    width: 100px;
     text-decoration: none;
-    margin: 10px 0px 0px 97%;
+    margin: 15px 0px 0px 92%;
     color: rgba(255, 217, 0, 0.774);
 }
 
@@ -94,7 +94,11 @@ footer {
 @media screen and (min-width:320px) and (max-width:550px) {
     #winner {
         height: 300px;
-        margin-left: 100px;
+        margin-left: 120px;
+    }
+
+    a {
+        margin: 15px 0px 0px 70%;
     }
 
     h2 {
@@ -122,10 +126,20 @@ footer {
         margin-left: 100px;
     }
 
+    a {
+        margin: 15px 0px 0px 70%;
+    }
+
     #main-container {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
         margin: 150px 0px 0px 0px;
+    }
+}
+
+@media screen and (min-width:851px) and (max-width:1200px) {
+    a {
+        margin: 15px 0px 0px 80%;
     }
 }
