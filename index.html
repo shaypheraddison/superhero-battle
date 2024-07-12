@@ -17,18 +17,18 @@
                 <label for="p1-radio">Player 1</label>
             </div>
             <div class="player-info">
-                <div class="player-img-container" id="display-p1">
+                <div class="player-img-container">
                     <img src="resources/profile-images/stockfighter-left-prof.png" class="player-img" id="player-1-img">
                 </div>
-                <div class="stats" id="p1-stats">
+                <div class="stats">
                     <ul class="powerstats" id="p1-powerstats">
-                        <h3 class="char-name" id="p1-character"></h3>
-                        <li class="p1-ps" id="p1-int">Combat  - </li>
-                        <li class="p1-ps" id="p1-str">Durability - </li>
-                        <li class="p1-ps" id="p1-spd">Intelligence - </li>
-                        <li class="p1-ps" id="p1-dur">Power - </li>
-                        <li class="p1-ps" id="p1-pwr">Speed - </li>
-                        <li class="p1-ps" id="p1-com">Strength - </li>
+                        <h3 id="p1-character-header"></h3>
+                        <li class="p1-powerstat">Combat  - </li>
+                        <li class="p1-powerstat">Durability - </li>
+                        <li class="p1-powerstat">Intelligence - </li>
+                        <li class="p1-powerstat">Power - </li>
+                        <li class="p1-powerstat">Speed - </li>
+                        <li class="p1-powerstat">Strength - </li>
                     </ul>
                 </div>
             </div>
@@ -45,18 +45,18 @@
                 <label for="p2-radio">Player 2</label>
             </div>
             <div class="player-info">
-                <div class="player-img-container" id="display-p2">
+                <div class="player-img-container">
                     <img src="resources/profile-images/stockfighter-right-prof.png" class="player-img" id="player-2-img">
                 </div>
-                <div class="stats" id="p2-stats">
+                <div class="stats">
                     <ul class="powerstats" id="p2-powerstats">
-                        <h3 class="char-name" id="p2-character"></h3>
-                        <li class="p2-ps" id="p2-int">Combat - </li>
-                        <li class="p2-ps" id="p2-str">Durability - </li>
-                        <li class="p2-ps" id="p2-spd">Intelligence - </li>
-                        <li class="p2-ps" id="p2-dur">Power - </li>
-                        <li class="p2-ps" id="p2-pwr">Speed - </li>
-                        <li class="p2-ps" id="p2-com">Strength - </li>
+                        <h3 id="p2-character-header"></h3>
+                        <li class="p2-powerstat">Combat - </li>
+                        <li class="p2-powerstat">Durability - </li>
+                        <li class="p2-powerstat">Intelligence - </li>
+                        <li class="p2-powerstat">Power - </li>
+                        <li class="p2-powerstat">Speed - </li>
+                        <li class="p2-powerstat">Strength - </li>
                     </ul>
                 </div>
             </div>
@@ -64,7 +64,7 @@
     </div>
 
     <div id="character-container">
-        <!-- id's are the id number from the rest API -->
+        <!-- id's are the id number from the REST API -->
         <div id="choices">
             <div type="button" class="pic-container" id="470" name="Moon Knight">
                 <img src="resources/thumbnails/moon-knight.png" class="playable-character" alt="moon-knight-img" title="Moon Knight">

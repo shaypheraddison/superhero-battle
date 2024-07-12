@@ -3,13 +3,13 @@ const radioButtons = document.querySelectorAll("input[name='player']");
 const fightButton = document.getElementById("button");
 
 // player-character choice
-const selectedNameP1 = document.getElementById("p1-character");
-const selectedNameP2 = document.getElementById("p2-character");
+const selectedNameP1 = document.getElementById("p1-character-header");
+const selectedNameP2 = document.getElementById("p2-character-header");
 const playerChoices = document.querySelectorAll(".pic-container");
 const player1Image = document.getElementById("player-1-img");
 const player2Image = document.getElementById("player-2-img");
-const player1StatsBox = document.querySelectorAll("li.p1-ps");
-const player2StatsBox = document.querySelectorAll("li.p2-ps");
+const player1StatsBox = document.querySelectorAll("li.p1-powerstat");
+const player2StatsBox = document.querySelectorAll("li.p2-powerstat");
 
 // character images
 const images = {
@@ -184,7 +184,6 @@ async function calculateStats() {
             };
             let randomMultiplier = Math.floor(Math.random() * 6 + 1) / 2;
     
-            //as long as the promise is fulfilled the resolve functions runs to do the multiplication for the stat totals
             resolve(totalStats * randomMultiplier);
         });
     });
@@ -210,7 +209,6 @@ async function simulateFight() {
         sessionStorage.setItem("winnerName", winnerName);
         sessionStorage.setItem("winnerImage", winnerImage);
 
-        //set a timeout to cause a delay in the winning page showing up to build up suspense
         setTimeout(function(){ 
             window.location.href = "winner/winner.html"; 
         }, 650);
