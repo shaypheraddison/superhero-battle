@@ -82,16 +82,18 @@ li {
     margin-top: -40px;
 }
 
+.player-img {
+    margin-right: 300px;
+}
+
 #player-1-img {
     border: 2px solid rgba(245, 245, 245, 0.678);
     box-shadow: -3px 2px 13px rgb(0, 0, 0);
-    margin-right: 300px;
 }
 
 #player-2-img {
     border: 2px solid rgba(245, 245, 245, 0.678);
     box-shadow: 3px 2px 13px rgb(0, 0, 0);
-    margin-right: 300px;
 }
 
 #fight-btn {
@@ -280,7 +282,7 @@ li {
     }
 
     .player-img {
-        margin-right: 0px;
+        margin-right: 50px;
     }
 
     .stats {
