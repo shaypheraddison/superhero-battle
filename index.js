@@ -99,8 +99,6 @@ async function getCharacterStats(names) {
         }
     };
 
-    for (const )
-
     for (const name of names) {
         const character = jsonData.find(character => {
             return character.name === name; 
