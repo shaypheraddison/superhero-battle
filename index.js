@@ -1,15 +1,5 @@
-// player radio buttons and fight button
-const radioButtons = document.querySelectorAll("input[name='player']");
-const fightButton = document.getElementById("button");
-
-// player-character choice
 const selectedNameP1 = document.getElementById("p1-character-header");
 const selectedNameP2 = document.getElementById("p2-character-header");
-const playerChoices = document.querySelectorAll(".pic-container");
-const player1Image = document.getElementById("player-1-img");
-const player2Image = document.getElementById("player-2-img");
-const player1StatsBox = document.querySelectorAll("li.p1-powerstat");
-const player2StatsBox = document.querySelectorAll("li.p2-powerstat");
 
 // character images
 const images = {
@@ -82,6 +72,7 @@ const characterNames = [
 let currentPlayer = "";
 
 function updateCurrentPlayer() {
+    const radioButtons = document.querySelectorAll("input[name='player']");
     radioButtons.forEach(function(button) {
         button.addEventListener("change", function(event) {
             currentPlayer = event.target.value;
@@ -108,6 +99,8 @@ async function getCharacterStats(names) {
         }
     };
 
+    for (const )
+
     for (const name of names) {
         const character = jsonData.find(character => {
             return character.name === name; 
@@ -125,9 +118,10 @@ async function getCharacterStats(names) {
 
 async function getImageData(callback) {
     const characterStats = await getCharacterStats(characterNames);
+    const playerChoices = document.querySelectorAll(".pic-container");
 
     playerChoices.forEach(function(image) {
-        image.addEventListener("click", async function(){
+        image.addEventListener("click", function(){
             let imageName = image.getAttribute("name")
             if (characterStats[imageName]) {
                 let selectedCharacterStats = characterStats[imageName].powerstats;
@@ -150,6 +144,12 @@ function toCamelCase(str) {
 };
 
 function setPlayerImage() {
+    const player1Image = document.getElementById("player-1-img");
+    const player2Image = document.getElementById("player-2-img");
+
+    const player1StatsBox = document.querySelectorAll("li.p1-powerstat");
+    const player2StatsBox = document.querySelectorAll("li.p2-powerstat");
+
     getImageData(function(character) {
         let camelCaseName = toCamelCase(character.imageName);
         if (character.player === "Player 1") {
@@ -175,7 +175,7 @@ function setPlayerImage() {
     });
 };
 
-async function calculateStats() {
+function calculateStats() {
     return new Promise(function(resolve) {
         getImageData(function(character) {
             let totalStats = 0;
@@ -192,6 +192,7 @@ async function calculateStats() {
 async function simulateFight() {
     let score1 = await calculateStats();
     let score2 = await calculateStats();
+    const fightButton = document.getElementById("button");
 
     fightButton.addEventListener("click", async function(event) {
         event.preventDefault();
@@ -215,12 +216,10 @@ async function simulateFight() {
     });
 };
 
-async function main() {
-    document.addEventListener("DOMContentLoaded", function() {
-        updateCurrentPlayer();
-        setPlayerImage();
-        simulateFight();
-    });
+function fightResult() {
+    updateCurrentPlayer();
+    setPlayerImage();
+    simulateFight();    
 };
 
-main();
+fightResult();
