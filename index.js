@@ -98,19 +98,32 @@ async function getCharacterStats(names) {
             "strength": 93
         }
     };
-
-    for (const name of names) {
-        const character = jsonData.find(character => {
-            return character.name === name; 
-        });
-        if (character) {
-            characterData[name] = {
-                id: character.id,
-                name: character.name,
-                powerstats: character.powerstats    
+    
+    jsonData.forEach(function(character) {
+        for (const name of names) {
+            if (character.name === name) {
+                characterData[name] = {
+                    id: character.id,
+                    name: character.name,
+                    powerstats: character.powerstats    
+                };
             };
-        };
-    };
+        }
+    });
+
+    // for (const name of names) {
+    //     console.log(name);
+    //     const character = jsonData.find(character => {
+    //         return character.name === name; 
+    //     });
+    //     if (character) {
+    //         characterData[name] = {
+    //             id: character.id,
+    //             name: character.name,
+    //             powerstats: character.powerstats    
+    //         };
+    //     };
+    // };
     return characterData;
 };
 
