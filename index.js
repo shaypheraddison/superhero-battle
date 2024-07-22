@@ -110,20 +110,6 @@ async function getCharacterStats(names) {
             };
         }
     });
-
-    // for (const name of names) {
-    //     console.log(name);
-    //     const character = jsonData.find(character => {
-    //         return character.name === name; 
-    //     });
-    //     if (character) {
-    //         characterData[name] = {
-    //             id: character.id,
-    //             name: character.name,
-    //             powerstats: character.powerstats    
-    //         };
-    //     };
-    // };
     return characterData;
 };
 
@@ -205,21 +191,35 @@ async function simulateFight() {
     let score2 = await calculateStats();
     const fightButton = document.getElementById("button");
 
+    console.log(score1, score2);
+
     fightButton.addEventListener("click", async function(event) {
         event.preventDefault();
 
         let winnerName = "";
+        let winnerNameP1 = "";
+        let winnerNameP2 = "";
         let winnerImage = "";
+        let winningPlayer = "";
         if (score1 > score2) {
-            winnerName = selectedNameP1.textContent;            
-            winnerImage = images.victory[toCamelCase(winnerName)];
+            winnerNameP1 = selectedNameP1.textContent;  
+            winnerNameP2 = selectedNameP2.textContent;
+            winnerName = selectedNameP1.textContent;
+            winnerImage = images.victory[toCamelCase(winnerNameP1)];
+            winningPlayer = "P1";
         } else {
+            winnerNameP1 = selectedNameP1.textContent;  
+            winnerNameP2 = selectedNameP2.textContent;
             winnerName = selectedNameP2.textContent;
-            winnerImage = images.victory[toCamelCase(winnerName)];
+            winnerImage = images.victory[toCamelCase(winnerNameP2)];
+            winningPlayer = "P2";
         };
 
-        sessionStorage.setItem("winnerName", winnerName);
+        sessionStorage.setItem("winnerNameP1", winnerNameP1);
+        sessionStorage.setItem("winnerNameP2", winnerNameP2);
         sessionStorage.setItem("winnerImage", winnerImage);
+        sessionStorage.setItem("winnerName", winnerName);
+        sessionStorage.setItem("winningPlayer", winningPlayer);
 
         setTimeout(function(){ 
             window.location.href = "winner/winner.html"; 
