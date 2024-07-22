@@ -215,10 +215,10 @@ async function simulateFight() {
             winningPlayer = "P2";
         };
 
+        sessionStorage.setItem("winnerName", winnerName);
         sessionStorage.setItem("winnerNameP1", winnerNameP1);
         sessionStorage.setItem("winnerNameP2", winnerNameP2);
         sessionStorage.setItem("winnerImage", winnerImage);
-        sessionStorage.setItem("winnerName", winnerName);
         sessionStorage.setItem("winningPlayer", winningPlayer);
 
         setTimeout(function(){ 
