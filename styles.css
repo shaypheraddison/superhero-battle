@@ -77,6 +77,10 @@ li {
     width: 45%;
 }
 
+.playable-character:hover {
+    border-color: gold;
+}
+
 .player-info {
     display: flex;
     align-items: center;
