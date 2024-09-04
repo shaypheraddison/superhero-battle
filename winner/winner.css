@@ -8,6 +8,20 @@ body {
     background-size: inherit;
 }
 
+a {
+    font-size: 20px;
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    margin: 15px 0px 0px 92%;
+    color: rgba(255, 217, 0, 0.774);
+}
+
+a:hover {
+    -webkit-text-fill-color: whitesmoke;
+    -webkit-text-stroke: 1px;
+}
+
 #main-container {
     display: flex;
     flex-direction: column-reverse;
@@ -28,7 +42,7 @@ img {
     animation: slide-in 1s linear;
   }
   
-  @keyframes slide-in {
+@keyframes slide-in {
     0% {
         transform: translateX(-500%);
     }
@@ -80,7 +94,11 @@ footer {
 @media screen and (min-width:320px) and (max-width:550px) {
     #winner {
         height: 300px;
-        margin-left: 100px;
+        margin-left: 120px;
+    }
+
+    a {
+        margin: 15px 0px 0px 70%;
     }
 
     h2 {
@@ -101,15 +119,14 @@ footer {
     }
 }
 
-/* Need to perfect the centering on this media query after review */
 @media screen and (min-width:551px) and (max-width:850px) {
     #winner {
         height: 300px;
         margin-left: 100px;
     }
 
-    h2 {
-        font-size: 40px;
+    a {
+        margin: 15px 0px 0px 70%;
     }
 
     #main-container {
@@ -118,10 +135,10 @@ footer {
         align-items: center;
         margin: 150px 0px 0px 0px;
     }
+}
 
-    #banner {
-        width: 100%;
-        white-space: nowrap;
-        animation: scrolling 2s linear;
+@media screen and (min-width:851px) and (max-width:1200px) {
+    a {
+        margin: 15px 0px 0px 80%;
     }
 }

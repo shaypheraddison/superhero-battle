@@ -1,17 +1,5 @@
-// player radio buttons and fight button
-const radioButtons = document.querySelectorAll("input[name='player']");
-const fightButton = document.getElementById("button");
-
-// player-character choice
-const selectedNameP1 = document.getElementById("p1-character");
-const selectedNameP2 = document.getElementById("p2-character");
-const playerChoices = document.querySelectorAll(".pic-container");
-const player1Image = document.getElementById("player-1-img");
-const player2Image = document.getElementById("player-2-img");
-const player1StatsBox = document.querySelectorAll("li.p1-ps");
-const player2StatsBox = document.querySelectorAll("li.p2-ps");
-
-let currentPlayer = "";
+const selectedNameP1 = document.getElementById("p1-character-header");
+const selectedNameP2 = document.getElementById("p2-character-header");
 
 // character images
 const images = {
@@ -81,7 +69,10 @@ const characterNames = [
     "Vegeta"
 ];
 
+let currentPlayer = "";
+
 function updateCurrentPlayer() {
+    const radioButtons = document.querySelectorAll("input[name='player']");
     radioButtons.forEach(function(button) {
         button.addEventListener("change", function(event) {
             currentPlayer = event.target.value;
@@ -107,27 +98,27 @@ async function getCharacterStats(names) {
             "strength": 93
         }
     };
-
-    for (const name of names) {
-        const character = jsonData.find(character => {
-            return character.name === name; 
-        });
-        if (character) {
-            characterData[name] = {
-                id: character.id,
-                name: character.name,
-                powerstats: character.powerstats    
+    
+    jsonData.forEach(function(character) {
+        for (const name of names) {
+            if (character.name === name) {
+                characterData[name] = {
+                    id: character.id,
+                    name: character.name,
+                    powerstats: character.powerstats    
+                };
             };
-        };
-    };
+        }
+    });
     return characterData;
 };
 
 async function getImageData(callback) {
     const characterStats = await getCharacterStats(characterNames);
+    const playerChoices = document.querySelectorAll(".pic-container");
 
     playerChoices.forEach(function(image) {
-        image.addEventListener("click", async function(){
+        image.addEventListener("click", function(){
             let imageName = image.getAttribute("name")
             if (characterStats[imageName]) {
                 let selectedCharacterStats = characterStats[imageName].powerstats;
@@ -150,6 +141,12 @@ function toCamelCase(str) {
 };
 
 function setPlayerImage() {
+    const player1Image = document.getElementById("player-1-img");
+    const player2Image = document.getElementById("player-2-img");
+
+    const player1StatsBox = document.querySelectorAll("li.p1-powerstat");
+    const player2StatsBox = document.querySelectorAll("li.p2-powerstat");
+
     getImageData(function(character) {
         let camelCaseName = toCamelCase(character.imageName);
         if (character.player === "Player 1") {
@@ -160,7 +157,6 @@ function setPlayerImage() {
                 stats.style.display = "block";
                 let statName = stats.textContent.split("-")[0];
                 stats.textContent = `${statName} - ${Object.values(character.selectedCharacterStats)[index]}`;
-
             });
     
         } else if (character.player === "Player 2") {
@@ -176,12 +172,13 @@ function setPlayerImage() {
     });
 };
 
-async function calculateStats() {
-    // creating new promise to calculate the stats and determine their random multiplier
-    // necessary to make a new promise due the the async nature of this function to begin with
+function calculateStats() {
     return new Promise(function(resolve) {
         getImageData(function(character) {
-            let totalStats = character.selectedCharacterStats.combat + character.selectedCharacterStats.durability + character.selectedCharacterStats.intelligence + character.selectedCharacterStats.power + character.selectedCharacterStats.speed + character.selectedCharacterStats.strength;
+            let totalStats = 0;
+            for (let stat in character.selectedCharacterStats) {
+                totalStats += character.selectedCharacterStats[stat]
+            };
             let randomMultiplier = Math.floor(Math.random() * 6 + 1) / 2;
     
             resolve(totalStats * randomMultiplier);
@@ -192,37 +189,48 @@ async function calculateStats() {
 async function simulateFight() {
     let score1 = await calculateStats();
     let score2 = await calculateStats();
-    console.log(score1);
-    console.log(score2);
+    const fightButton = document.getElementById("button");
+
+    console.log(score1, score2);
 
     fightButton.addEventListener("click", async function(event) {
         event.preventDefault();
 
         let winnerName = "";
+        let winnerNameP1 = "";
+        let winnerNameP2 = "";
         let winnerImage = "";
+        let winningPlayer = "";
         if (score1 > score2) {
-            console.log("Player 1 wins !");
-            winnerName = selectedNameP1.textContent;            
-            winnerImage = images.victory[toCamelCase(winnerName)];
+            winnerNameP1 = selectedNameP1.textContent;  
+            winnerNameP2 = selectedNameP2.textContent;
+            winnerName = selectedNameP1.textContent;
+            winnerImage = images.victory[toCamelCase(winnerNameP1)];
+            winningPlayer = "P1";
         } else {
-            console.log("Player 2 wins !");
+            winnerNameP1 = selectedNameP1.textContent;  
+            winnerNameP2 = selectedNameP2.textContent;
             winnerName = selectedNameP2.textContent;
-            winnerImage = images.victory[toCamelCase(winnerName)];
+            winnerImage = images.victory[toCamelCase(winnerNameP2)];
+            winningPlayer = "P2";
         };
 
-        console.log('Winner Name:', winnerName);
-        console.log('Winner Image:', winnerImage);
-
         sessionStorage.setItem("winnerName", winnerName);
+        sessionStorage.setItem("winnerNameP1", winnerNameP1);
+        sessionStorage.setItem("winnerNameP2", winnerNameP2);
         sessionStorage.setItem("winnerImage", winnerImage);
+        sessionStorage.setItem("winningPlayer", winningPlayer);
 
-        window.location.href = "winner/winner.html";
+        setTimeout(function(){ 
+            window.location.href = "winner/winner.html"; 
+        }, 650);
     });
 };
 
-
-document.addEventListener("DOMContentLoaded", function() {
+function fightResult() {
     updateCurrentPlayer();
     setPlayerImage();
-    simulateFight();
-});
+    simulateFight();    
+};
+
+fightResult();
